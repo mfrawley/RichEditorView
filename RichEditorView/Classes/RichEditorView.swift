@@ -162,6 +162,12 @@ public class RichEditorView: UIView {
             webView.loadRequest(request)
         }
     }
+
+    private var cursorView: UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 3, height: 30))
+        view.backgroundColor = .redColor()
+        return view
+    }()
 }
 
 
@@ -191,7 +197,9 @@ extension RichEditorView {
         }
 
         let rect = CGRect(x: x, y: y, width: width, height: height)
+        cursorView.frame = rect
         webView.scrollView.scrollRectToVisible(rect, animated: true)
+        webView.scrollView.addSubview(cursorView)
     }
 
     private func isContentEditable() -> Bool {
