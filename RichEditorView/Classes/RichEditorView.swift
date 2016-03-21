@@ -71,13 +71,23 @@ public class RichEditorView: UIView {
         }
     }
 
+    var cjw_inputAccessoryView: UIView?
     /**
         Input accessory view to display over they keyboard.
         Defaults to nil
     */
     public override var inputAccessoryView: UIView? {
-        get { return webView.cjw_inputAccessoryView }
-        set { webView.cjw_inputAccessoryView = newValue }
+        get { return cjw_inputAccessoryView }
+        set {
+            if let v = cjw_inputAccessoryView {
+                v.removeFromSuperview()
+            }
+            self.addSubview(newValue!)
+            let metrics = ["height": 50.0]
+            let layoutViews = ["toolbar" : newValue!]
+            self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[(toolbar)]-|", options:NSLayoutFormatOptions.AlignAllTop, metrics:metrics, views:layoutViews))
+            cjw_inputAccessoryView = newValue
+        }
     }
 
     /**

@@ -13,27 +13,27 @@
 static const char * const hackishFixClassName = "UIWebBrowserViewMinusAccessoryView";
 static Class hackishFixClass = Nil;
 
-- (UIView *)cjw_inputAccessoryView {
-    return objc_getAssociatedObject(self, @selector(cjw_inputAccessoryView));
-}
-
-- (void)setCjw_inputAccessoryView:(UIView *)view {
-    objc_setAssociatedObject(self, @selector(cjw_inputAccessoryView), view, OBJC_ASSOCIATION_RETAIN);
-
-    UIView *browserView = [self hackishlyFoundBrowserView];
-    if (browserView == nil) {
-        return;
-    }
-    [self ensureHackishSubclassExistsOfBrowserViewClass:[browserView class]];
-
-    object_setClass(browserView, hackishFixClass);
-
-    // This is how we will return the accessory view if we want to
-    // Class normalClass = objc_getClass("UIWebBrowserView");
-    // object_setClass(browserView, normalClass);
-
-    [browserView reloadInputViews];
-}
+//- (UIView *)cjw_inputAccessoryView {
+//    return objc_getAssociatedObject(self, @selector(cjw_inputAccessoryView));
+//}
+//
+//- (void)setCjw_inputAccessoryView:(UIView *)view {
+//    objc_setAssociatedObject(self, @selector(cjw_inputAccessoryView), view, OBJC_ASSOCIATION_RETAIN);
+//
+//    UIView *browserView = [self hackishlyFoundBrowserView];
+//    if (browserView == nil) {
+//        return;
+//    }
+//    [self ensureHackishSubclassExistsOfBrowserViewClass:[browserView class]];
+//
+//    object_setClass(browserView, hackishFixClass);
+//
+//    // This is how we will return the accessory view if we want to
+//    // Class normalClass = objc_getClass("UIWebBrowserView");
+//    // object_setClass(browserView, normalClass);
+//
+//    [browserView reloadInputViews];
+//}
 
 - (UIView *)hackishlyFoundBrowserView {
     UIScrollView *scrollView = self.scrollView;
