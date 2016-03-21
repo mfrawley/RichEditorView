@@ -162,7 +162,7 @@ public class RichEditorView: UIView {
         webView.scrollView.delegate = self
         webView.scrollView.clipsToBounds = false
         
-        webView.cjw_inputAccessoryView = nil
+        cjw_inputAccessoryView = nil
         
         self.addSubview(webView)
         
